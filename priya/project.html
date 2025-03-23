@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #d4edda, #ffccbc);
+            color: #333;
+            text-align: center;
+        }
+        header {
+            padding: 50px;
+            background: rgba(255, 255, 255, 0.8);
+            font-size: 24px;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        nav {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            position: sticky;
+            top: 0;
+            width: 100%;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: #ff5733;
+        }
+        section {
+            padding: 50px;
+            margin: 20px auto;
+            width: 80%;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .project {
+            padding: 20px;
+            margin: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            display: inline-block;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .project:hover {
+            transform: scale(1.05);
+        }
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .close {
+            cursor: pointer;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to My Portfolio</h1>
+        <p>Creative Developer | Designer | Freelancer</p>
+    </header>
+    <nav>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+    </nav>
+    <section id="about">
+        <h2>About Me</h2>
+        <p>Hi, I'm a passionate web developer with experience in creating beautiful and functional websites.</p>
+    </section>
+    <section id="projects">
+        <h2>My Projects</h2>
+        <div class="project">Weather App - A real-time weather forecasting application.</div>
+        <div class="project">Task Manager - A productivity tool to track daily tasks.</div>
+        <div class="project">Portfolio Website - A personal portfolio showcasing my skills and work.</div>
+        <div class="project">E-commerce Store - A simple online shop with a cart system.</div>
+        <div class="project">Finance Tracker - An expense and budget tracking application.</div>
+    </section>
+    <section id="contact">
+        <h2>Contact Me</h2>
+        <p>Email:2322ja10@kgcas.com</p> 
+        <p>Phone: 123-456-7890</p>
+        <p>github:</p>
+    </section>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelectorAll("nav a").forEach(anchor => {
+                anchor.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute("href").substring(1);
+                    document.getElementById(targetId).scrollIntoView({
+                        behavior: "smooth"
+                    });
+                });
+            });
+
+            const projects = document.querySelectorAll(".project");
+            projects.forEach(project => {
+                project.addEventListener("click", function () {
+                    const modal = document.createElement("div");
+                    modal.classList.add("modal");
+                    modal.innerHTML = `
+                        <div class="modal-content">
+                            <span class="close">&times;</span>
+                            <h2>${this.textContent.split(' - ')[0]}</h2>
+                            <p>${this.textContent.split(' - ')[1]}</p>
+                        </div>
+                    `;
+                    document.body.appendChild(modal);
+
+                    modal.querySelector(".close").addEventListener("click", function () {
+                        modal.remove();
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
